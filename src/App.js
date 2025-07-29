@@ -2,6 +2,20 @@ import React from 'react';
 import './App.css';
 
 function App() {
+  // Scrolling animation items
+  const scrollingItems = [
+    { icon: '🚀', text: 'Innovation', color: '#667eea' },
+    { icon: '⚡', text: 'Speed', color: '#ffeaa7' },
+    { icon: '🎯', text: 'Precision', color: '#fd79a8' },
+    { icon: '🔒', text: 'Security', color: '#74b9ff' },
+    { icon: '💎', text: 'Quality', color: '#fab1a0' },
+    { icon: '🌟', text: 'Excellence', color: '#55a3ff' },
+    { icon: '🎨', text: 'Design', color: '#a29bfe' },
+    { icon: '🔥', text: 'Performance', color: '#fd79a8' },
+    { icon: '💡', text: 'Ideas', color: '#fdcb6e' },
+    { icon: '🎪', text: 'Magic', color: '#e17055' },
+  ];
+
   return (
     <div className="App">
       {/* Navigation */}
@@ -20,6 +34,30 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero">
+        {/* Left Side Scrolling Animation */}
+        <div className="scrolling-animation-container">
+          <div className="scrolling-column">
+            {/* First set of items */}
+            <div className="scrolling-items">
+              {scrollingItems.map((item, index) => (
+                <div key={`first-${index}`} className="scroll-item" style={{'--item-color': item.color}}>
+                  <div className="scroll-item-icon">{item.icon}</div>
+                  <div className="scroll-item-text">{item.text}</div>
+                </div>
+              ))}
+            </div>
+            {/* Duplicate set for seamless loop */}
+            <div className="scrolling-items">
+              {scrollingItems.map((item, index) => (
+                <div key={`second-${index}`} className="scroll-item" style={{'--item-color': item.color}}>
+                  <div className="scroll-item-icon">{item.icon}</div>
+                  <div className="scroll-item-text">{item.text}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="hero-container">
           <div className="hero-content">
             <h1 className="hero-title">

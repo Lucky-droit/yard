@@ -96,6 +96,82 @@ body {
   overflow: hidden;
 }
 
+/* Scrolling Animation Container */
+.scrolling-animation-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 120px;
+  overflow: hidden;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scrolling-column {
+  position: relative;
+  height: 200%;
+  animation: scrollUp 20s linear infinite;
+}
+
+.scrolling-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 10px;
+}
+
+.scroll-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  min-height: 80px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--item-color, #667eea), transparent);
+  opacity: 0.1;
+  border-radius: 15px;
+}
+
+.scroll-item:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-item-icon {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.scroll-item-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
 .hero::before {
   content: '';
   position: absolute;
@@ -111,6 +187,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  padding-left: 140px; /* Account for scrolling animation */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -480,16 +557,30 @@ body {
   }
 }
 
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
   }
   
+  .scrolling-animation-container {
+    width: 80px;
+  }
+  
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+    padding-left: 100px;
   }
   
   .hero-title {
@@ -498,6 +589,19 @@ body {
   
   .hero-buttons {
     justify-content: center;
+  }
+  
+  .scroll-item {
+    padding: 10px 5px;
+    min-height: 60px;
+  }
+  
+  .scroll-item-icon {
+    font-size: 1.2rem;
+  }
+  
+  .scroll-item-text {
+    font-size: 0.65rem;
   }
   
   .features-grid {
@@ -520,6 +624,14 @@ body {
 }
 
 @media (max-width: 480px) {
+  .scrolling-animation-container {
+    width: 60px;
+  }
+  
+  .hero-container {
+    padding-left: 80px;
+  }
+  
   .hero-title {
     font-size: 2rem;
   }
@@ -538,5 +650,18 @@ body {
   
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .scroll-item {
+    padding: 8px 3px;
+    min-height: 50px;
+  }
+  
+  .scroll-item-icon {
+    font-size: 1rem;
+  }
+  
+  .scroll-item-text {
+    font-size: 0.6rem;
   }
 }
